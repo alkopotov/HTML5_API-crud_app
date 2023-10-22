@@ -6,7 +6,7 @@ function ProductItem() {
 
 
   function updateDescription(e) {
-    console.log(e.target.parentNode.parentNode.id)
+    // console.log(e.target.parentNode.parentNode.id)
 
     let newDescription = prompt("Отредактируйте описание", e.target.parentNode.previousElementSibling.innerText)
 
@@ -17,8 +17,18 @@ function ProductItem() {
         headers: {'Content-Type': 'application/json; charset=UTF-8'},
         body: JSON.stringify(data)
       })
+        .then(res =>  {
+          if (res) {
+            return res
+          } else {
+            let error = new Error(res.statusText);
+            error.response = res;
+            throw error;
+          }}
+          )
         .then(res => res.json())
         .then(data => getData())
+        .catch(e => console.log("Ошибка сервера"))
       }
   }
 
@@ -28,10 +38,21 @@ function ProductItem() {
       fetch(`${BACKEND}/${e.target.parentNode.parentNode.id}`, {
         method: 'DELETE'
       })
-        .then(res => res.text())
-        .then(res => getData())
+        .then(res => {
+          if (res) {
+            return res.text()        
+          } else {
+            let error = new Error(res.statusText);
+            error.response = res;
+            throw error;
+          }
+        })
+        .then(res => {
+          alert("Запись удалена");
+          getData()
+        })
+        .catch(e => alert("Ошибка сервера. Запись удалить не удалось."))
     }
-    
   } 
 
   useEffect(() => {

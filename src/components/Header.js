@@ -10,7 +10,6 @@ function Header(props) {
   let addButtonRef = useRef();
 
   function addNewProduct() {
-    console.log(addButtonRef.current)
     let title = prompt("Введите название продукта")
     if (title) {
       let description = prompt("Введите описание продукта")
