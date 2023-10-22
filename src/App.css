@@ -1,38 +1,79 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  background-color:blanchedalmond;
+  padding-bottom: 20px;
+}
+h1 {
+  margin: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header>button{
+  background-color: gray;
+  margin: auto;
+  padding: 10px 20px 10px 20px;
+  color: beige;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px green;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.product__list {
+  max-width: 90%;
+  margin: auto;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.product__list__card {
   display: flex;
+  gap: 20px;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 30px 10px 30px 10px;
+  border: solid 1px gray;
 }
 
-.App-link {
-  color: #61dafb;
+.product__list__card>p {
+  text-align: center;
+  padding: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.product__list__card>h2 {
+  text-align: center;
+}
+
+.button__block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.button__block>button {
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 400px){
+  .product__list {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
-  }
+  
 }

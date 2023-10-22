@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import ProductList from './components/ProductList';
+import { Context} from './context/Context';
 
 function App() {
+
+  const BACKEND = 'http://localhost:3100/products'
+  const [products, setProducts] = useState([]);
+
+  function getData(){
+    fetch(BACKEND)
+      .then(res => res.json())
+      .then(data => setProducts(data))
+  }
+
+  useState()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={{products, setProducts, getData, BACKEND}}>
+      <section className='wrapper'>
+        <Header getData={getData}/>
+        <ProductList/>
+      </section>
+    </Context.Provider>
   );
 }
 
